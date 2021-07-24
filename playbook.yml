@@ -9,9 +9,9 @@
   - name: start docker
     service: name=docker state=started
   - name: get the dockerfile from githib
-    git: repo=https://github.com/Mrunmay1312/AnsibleDockerdemo.git dest=/tmp/gitrepo
-  - name: build dockerfile
-    command: chdir=/tmp/gitrepo docker build -t deployimage:ansible .
+    git: repo=https://github.com/Mrunmay1312/AnsibleDockerdemo.git dest=/etc/ansible
+  - name: build dockerfile_ansible
+    command: chdir=/etc/ansible docker build -t deployimage:ansible .
   - name: run the dockerfile
     command: docker run -itd -P deployimage:ansible
  

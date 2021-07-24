@@ -8,7 +8,7 @@
     yum: name=docker state=present
   - name: start docker
     service: name=docker state=started
-  - name: get the dockerfile from githib
+  - name: get the dockerfile from github
     git: repo=https://github.com/Mrunmay1312/AnsibleDockerdemo.git dest=/etc/ansible/gitrepo
   - name: build dockerfile_ansible
     command: chdir=/etc/ansible/gitrepo docker build -t deployimage:ansible .

@@ -18,4 +18,3 @@
     command: chdir=/tmp/gitrepo docker build -t addressbook:ansible .
   - name: run Image
     command: docker run -itd -P addressbook:ansible
-© 2021 GitHub, Inc.

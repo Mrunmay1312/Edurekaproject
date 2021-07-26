@@ -2,16 +2,20 @@
   become: true
   become_user: root
   tasks:
-  - name: install git
-    yum: name=git state=present
+  - name: install tomcat
+    yum: name=tomcat state=present
+  - name: start tomcat
+    service: name=tomcat state=started
   - name: install docker
     yum: name=docker state=present
   - name: start docker
     service: name=docker state=started
-  - name: get the dockerfile from github
-    git: repo=https://github.com/Mrunmay1312/AnsibleDockerdemo.git dest=/etc/ansible/gitrepo
-  - name: build dockerfile_ansible
-    command: chdir=/etc/ansible/gitrepo docker build -t deployimage:ansible .
-  - name: run the dockerfile
-    command: docker run -itd -P deployimage:ansible
- 
+  - name: install git
+    yum: name=git state=present
+  - name: get repo
+    git: repo=https://github.com/Mrunmay1312/AnsibleDockerdemo.git dest=/tmp/gitrepo
+  - name: Build Dockerfile
+    command: chdir=/tmp/gitrepo docker build -t addressbook:ansible .
+  - name: run Image
+    command: docker run -itd -P addressbook:ansible
+© 2021 GitHub, Inc.
